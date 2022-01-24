@@ -13,6 +13,8 @@ public final class Constants {
 
         // Inversions
         public static final boolean kInvertGyro = false;
+        public static final boolean kInvertDrive = false;
+        public static final boolean kInvertSteer = false;
         public static final boolean kInvertCancoder = false;
 
         // Physical properties
@@ -37,21 +39,13 @@ public final class Constants {
             public final int steerMotorID;
             public final int cancoderID;
             public final double angleOffset;
-            public final boolean invertDrive;
-            public final boolean invertSteer;
             public final Translation2d centerOffset;
-            private Module(
-                int moduleNum, int driveMotorID, int steerMotorID, int cancoderID,
-                double angleOffset, boolean invertDrive, boolean invertSteer,
-                double xOffset, double yOffset
-                ){
+            private Module(int moduleNum, int driveMotorID, int steerMotorID, int cancoderID, double angleOffset, double xOffset, double yOffset){
                 this.moduleNum = moduleNum;
                 this.driveMotorID = driveMotorID;
                 this.steerMotorID = steerMotorID;
                 this.cancoderID = cancoderID;
                 this.angleOffset = angleOffset;
-                this.invertDrive = invertDrive;
-                this.invertSteer = invertSteer;
                 centerOffset = new Translation2d(xOffset, yOffset);
             }
         }
