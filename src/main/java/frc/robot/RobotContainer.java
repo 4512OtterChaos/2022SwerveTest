@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.auto.AutoOptions;
 import frc.robot.commands.FollowCircle;
-import frc.robot.common.Constants;
 import frc.robot.common.OCXboxController;
+import frc.robot.constants.AutoConstants;
 import frc.robot.subsystems.Drivetrain;
 
 public class RobotContainer {
@@ -23,16 +23,13 @@ public class RobotContainer {
 
     private final AutoOptions autoOptions;
 
-    private Field2d field2d = new Field2d();
-
     public RobotContainer(){
         drivetrain = new Drivetrain();
 
         configureDriverBinds();
 
-        autoOptions = new AutoOptions(drivetrain, field2d);
+        autoOptions = new AutoOptions(drivetrain);
 
-        SmartDashboard.putData("Field", field2d);
         autoOptions.submit();
     }
 
@@ -96,15 +93,12 @@ public class RobotContainer {
         // we use an instant command like this to construct a new command every button press
         driver.bButton.whenPressed(
             new InstantCommand(()->{
-                new FollowCircle(drivetrain, 1.5, new Rotation2d(), Constants.Auto.kSlowSpeedConfig).schedule();
+                new FollowCircle(drivetrain, 1.5, new Rotation2d(), AutoConstants.kSlowSpeedConfig).schedule();
             })
         );
     }
 
     public void log(){
         drivetrain.log();
-        // display our robot (and individual modules) pose on the field
-        field2d.setRobotPose(drivetrain.getPose());
-        field2d.getObject("Swerve Modules").setPoses(drivetrain.getModulePoses());
     }
 }
