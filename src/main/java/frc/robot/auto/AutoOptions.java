@@ -79,6 +79,14 @@ public class AutoOptions {
                 "Test Path"
             )
         );
+        autoOptions.addOption("Test", 
+            autoFollowTrajectories(
+                drivetrain, 
+                AutoConstants.kSlowSpeedConfig,
+                "Forward","Forward","Forward","Forward","Forward","Forward","Forward","Forward",
+                "Forward","Forward","Forward","Forward","Forward","Forward","Forward","Forward"
+            )
+        );
     }
 
     /**

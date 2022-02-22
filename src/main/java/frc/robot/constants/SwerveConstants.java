@@ -34,10 +34,10 @@ public class SwerveConstants {
     public static final double kSteerGearRatio = 12.8; // 12.8:1
 
     public enum Module {
-        FL(1, 0, 1, 0, 101.855, kTrackLength/2, kTrackWidth/2), // Front left
-        FR(2, 2, 3, 1, -114.346, kTrackLength/2, -kTrackWidth/2),
-        BL(3, 4, 5, 2, -119.729, -kTrackLength/2, kTrackWidth/2),
-        BR(4, 6, 7, 3, -179.473, -kTrackLength/2, -kTrackWidth/2);
+        FL(1, 0, 1, 0, 96.855, kTrackLength/2, kTrackWidth/2), // Front left
+        FR(2, 2, 3, 1, -118.565, kTrackLength/2, -kTrackWidth/2),
+        BL(3, 4, 5, 2, -122.344, -kTrackLength/2, kTrackWidth/2),
+        BR(4, 6, 7, 3, 175.078, -kTrackLength/2, -kTrackWidth/2);
         
         public final int moduleNum;
         public final int driveMotorID;
@@ -70,9 +70,9 @@ public class SwerveConstants {
     // Linear drive feed forward
     public static final SimpleMotorFeedforward kDriveFF = isReal ?
         new SimpleMotorFeedforward( // real
-            0.6, // Voltage to break static friction
-            2.5, // Volts per meter per second
-            0.4 // Volts per meter per second squared
+            0.2, // Voltage to break static friction
+            2.25, // Volts per meter per second
+            0.17 // Volts per meter per second squared
         )
         :
         new SimpleMotorFeedforward( // sim
@@ -99,9 +99,9 @@ public class SwerveConstants {
     public static final double kDriveKI = 0;
     public static final double kDriveKD = 0;
 
-    public static final double kSteerKP = isReal ? 0.6 : 0.1;
+    public static final double kSteerKP = isReal ? 0.3 : 0.1;
     public static final double kSteerKI = isReal ? 0 : 0;
-    public static final double kSteerKD = isReal ? 12 : 0;
+    public static final double kSteerKD = isReal ? 1 : 0;
 
 
     // The configurations applied to swerve CTRE devices
@@ -128,6 +128,7 @@ public class SwerveConstants {
         steerConfig.slot0.kP = kSteerKP;
         steerConfig.slot0.kI = kSteerKI;
         steerConfig.slot0.kD = kSteerKD;
+        steerConfig.slot0.allowableClosedloopError = 50;
         if(RobotBase.isSimulation()){
             steerConfig.neutralDeadband = 0.001; // we need low output to accurately control steering
         }
