@@ -34,10 +34,11 @@ public class SwerveConstants {
     public static final double kSteerGearRatio = 12.8; // 12.8:1
 
     public enum Module {
-        FL(1, 0, 1, 0, 0, kTrackLength/2, kTrackWidth/2), // Front left
-        FR(2, 2, 3, 1, 0, kTrackLength/2, -kTrackWidth/2),
-        BL(3, 4, 5, 2, 0, -kTrackLength/2, kTrackWidth/2),
-        BR(4, 6, 7, 3, 0, -kTrackLength/2, -kTrackWidth/2);
+        FL(1, 0, 1, 0, 101.855, kTrackLength/2, kTrackWidth/2), // Front left
+        FR(2, 2, 3, 1, -114.346, kTrackLength/2, -kTrackWidth/2),
+        BL(3, 4, 5, 2, -119.729, -kTrackLength/2, kTrackWidth/2),
+        BR(4, 6, 7, 3, -179.473, -kTrackLength/2, -kTrackWidth/2);
+        
         public final int moduleNum;
         public final int driveMotorID;
         public final int steerMotorID;

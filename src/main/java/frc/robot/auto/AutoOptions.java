@@ -71,6 +71,14 @@ public class AutoOptions {
                 "5 ball mockup"
             )
         );
+
+        autoOptions.addOption("Mockup PathPlanner 2",
+            autoFollowTrajectories(
+                drivetrain,
+                AutoConstants.kMediumSpeedConfig,
+                "Test Path"
+            )
+        );
     }
 
     /**
