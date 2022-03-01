@@ -125,7 +125,12 @@ public class Drivetrain extends SubsystemBase {
     public void setModuleStates(SwerveModuleState[] desiredStates, boolean steerInPlace){
         SwerveDriveKinematics.desaturateWheelSpeeds(desiredStates, SwerveConstants.kMaxLinearSpeed);
         for(int i=0;i<4;i++){
-            swerveMods[i].setDesiredState(desiredStates[i], steerInPlace);
+            swerveMods[i].setOpenLoopState(desiredStates[i], steerInPlace);
+        }
+    }
+    public void setModuleSteerVelocity(double[] steerVelocities){
+        for(int i=0;i<4;i++){
+            swerveMods[i].setSteerVelocity(steerVelocities[i]);
         }
     }
     /**

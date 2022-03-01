@@ -3,6 +3,9 @@ package frc.robot;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -95,9 +98,16 @@ public class RobotContainer {
                 new FollowCircle(drivetrain, 1.5, new Rotation2d(), AutoConstants.kSlowSpeedConfig).schedule();
             })
         );
+
+        //driver.yButton.whenPressed(new InstantCommand(()->autoOptions.getSelected().schedule()));
+        driver.yButton.whileHeld(()->{
+            double steerVelocity = 4;
+            drivetrain.setModuleSteerVelocity(new double[]{steerVelocity,steerVelocity,steerVelocity,steerVelocity});
+        }, drivetrain);
     }
 
     public void log(){
         drivetrain.log();
+        NetworkTableInstance.getDefault().flush();
     }
 }
